@@ -191,6 +191,6 @@ button.addEventListener("click", (e) => {
 });
 
 replaceButton.addEventListener('click', (e) => {
-    e.preventDefault();
+    e.preventDefault()
     encryptDecryptInput.value = encryptDecryptOutput.value;
 });
