@@ -1,7 +1,10 @@
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-function generateKey(keyText){
+function generateKey(e, keyText){
+    e.preventDefault();
+
+    keyText = keyInput.value;
     keyText = keyText.toLowerCase();
     keyText = keyText.replace(/j/g, 'i');
     letterSet = new Set();
@@ -22,12 +25,13 @@ function generateKey(keyText){
         }
     }
 
-    console.log(graph);
-    return graph;
+    key = graph;
+    displayKey(key);
 }
 
-function encryptText(plainText, key){
+function encryptText(){
 
+    plainText = encryptDecryptInput.value;
     plainText = plainText.toLowerCase();
     plainText = plainText.replace(/j/g, 'i');
     plainText = plainText.split('');
@@ -41,6 +45,8 @@ function encryptText(plainText, key){
             i++;
         }
     }
+
+    console.log(plainText);
 
     encryptedText = [];
     character = 0;
@@ -85,13 +91,16 @@ function encryptText(plainText, key){
         }
         character += 2;
     }
+
     console.log(encryptedText);
-    return encryptedText.join("");
+    console.log(encryptedText.join("").toUpperCase());
+    encryptDecryptOutput.textContent = encryptedText.join("");
 }
 
-function decryptText(cipherText, key){
+function decryptText(){
 
-    cipherText = cipherText.toLowerCase();
+    cipherText = encryptDecryptInput.value;
+    cipherText = cipherText.toLowerCase().split('');
     i = 0;
     while(i < cipherText.length){
         if(!alphabet.includes(cipherText[i])){
@@ -137,16 +146,51 @@ function decryptText(cipherText, key){
         }
         character += 2;
     }
-    console.log(decryptedText);
-    console.log(decryptedText.join('').toUpperCase());
+
+    encryptDecryptOutput.value = decryptedText.join("");
+    console.log(decryptedText.join("").toUpperCase());
 }
 
+function displayKey(key){
+    table.textContent = '';
+    row = document.createElement('tr');
+    for(i = 0; i < key.length; i++){
+        column = document.createElement("td");
+        column.textContent = key[i].toUpperCase();
+        row.appendChild(column);
+        if(i % 5 == 4){
+            table.appendChild(row);
+            row = document.createElement("tr");
+        }
+    }
+}
 
+const table = document.querySelector(".key-table");
 
-key = generateKey("swimming");
+const encryptDecryptInput = document.querySelector("#encryptDecryptInput");
+const encryptDecryptOutput = document.querySelector("#encryptDecryptOutput");
+const keyInput = document.querySelector(".key-input");
+const keyButton = document.querySelector("#generate-key");
+const replaceButton = document.querySelector("#replaceText");
+key = ['s', 'w', 'i', 'm', 'n', 'g', 'a', 'b', 'c', 'd', 'e', 'f', 'h', 'k', 'l', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'x', 'y', 'z'];
+displayKey(key);
 
-secret = encryptText("Meet the most amazing way to highlight differences in your text! It is undoubtedly an easy to use online tool to compare text in the most efficient manner. It allows every user a hassle free experience to compare some content online. This incredible tool allows everyone to simply make an online text comparison and find out the differences amidst two texts. The super easy procedure involves just a single step; paste the two texts in separate boxes and click on the compare button to unfold the differences. The two texts will be shown on the screen side by side along with the differences highlighted. This awesome tool not only highlights the words within the cluster of lines that entail a difference. If your text is lengthy, it also offers links that will help you to jump from on difference to the other.", key)
+keyButton.addEventListener('click', generateKey);
 
-decryptText(secret, key)
+const button = document.querySelector("#calculate");
+const option = document.querySelector("#option");
 
-// decryptText("ICHIOEHIRY", key)
+button.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (option.value == 'encrypt'){
+        encryptText();
+    }
+    else{
+        decryptText();
+    }
+});
+
+replaceButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    encryptDecryptInput.value = encryptDecryptOutput.value;
+});

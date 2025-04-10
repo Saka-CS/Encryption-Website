@@ -3,48 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Playfair Cipher</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Playfair Cipher</h1>
+<body class="main-body">
+    <div class="header">
+        <h1>Playfair Cipher</h1>    
+    </div>
     
     <div class="main">
-        <div class="contanier">
-            <form class="encryption">
-                <h2>Encryption</h2>
-                <input type="text" class="input-field" placeholder="Enter your plain text" required>
-                <input type="text" class="output-field" disabled>
-                <input type="submit" value="Encrypt">
-            </form>
-        </div>
+        <form class="encrypt-container" name="encryptForm">
+            <h2>Encryption / Decryption</h2>
+            <textarea name="" id="encryptDecryptInput" class="input-field" placeholder="Enter your plain text"></textarea>
+            <button value="⇑" style="font-size: xx-large;" id="replaceText">⇑</button>
+            <textarea name="" id="encryptDecryptOutput" class="output-field" disabled></textarea>
+            <div>
+                <button type="submit" value="Calculate" id="calculate">Calculate</button>
+                <select name="method" id="option" style="margin-left: 15px;">
+                    <option value="encrypt">Encrypt</option>
+                    <option value="decrypt">Decrypt</option>
+                </select>
+            </div>
+        </form>
 
-        <div class="contanier">
-            <form class="key">
-                <h2>Encryption</h2>
-                <input type="text" class="input-field" placeholder="Enter your key" required>
-                <table class="key-table">
-
-                </table>
-                <input type="submit" value="Encrypt">
-            </form>
-            
-        </div>
-
-        <div class="contanier">
-            <form class="decryption">
-                <h2>Decryption</h2>
-                <input type="text" class="input-field" placeholder="Enter your ciphertext text" required>
-                <input type="text" class="output-field" disabled>
-                <input type="submit" value="Encrypt">
-            </form>
-        </div>
-        
+        <form class="key-container">
+            <h2>Generate Key</h2>
+            <input type="text" class="key-input" value="Swimming" placeholder="Enter your key" required>
+            <table class="key-table">
+                <!-- Rows and columns are added with javaScript -->
+            </table>
+            <button type="submit" value="Generate" id="generate-key">Generate</button>
+        </form>
     </div>
 
     <div class="footer">
-        designed by Hassan Alkhamis
-
+        saka404@protonmail.com
     </div>
 </body>
 
