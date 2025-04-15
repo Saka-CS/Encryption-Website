@@ -156,7 +156,13 @@ function displayKey(key){
     row = document.createElement('tr');
     for(i = 0; i < key.length; i++){
         column = document.createElement("td");
-        column.textContent = key[i].toUpperCase();
+        if(key[i] == 'i'){
+            column.textContent = 'I/J';
+        }
+        else{
+            column.textContent = key[i].toUpperCase();
+        }
+
         row.appendChild(column);
         if(i % 5 == 4){
             table.appendChild(row);

@@ -95,6 +95,9 @@ table, td, th{
     background-color: var(--bg-color);
     border-radius: 15px;
 }
+td, th{
+    min-width: 25px;
+}
 
 table{
     width: 20vh;
