@@ -94,7 +94,7 @@ function encryptText(){
 
     console.log(encryptedText);
     console.log(encryptedText.join("").toUpperCase());
-    encryptDecryptOutput.textContent = encryptedText.join("");
+    encryptDecryptOutput.value = encryptedText.join("");
 }
 
 function decryptText(){
