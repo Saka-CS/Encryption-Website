@@ -25,8 +25,15 @@ function generateKey(e, keyText){
         }
     }
 
-    key = graph;
-    displayKey(key);
+    
+    if(graph.join() == alphabet.join()){
+        alert("The string you have entered dose not contain valid letters");
+    }
+    else{
+        key = graph;
+        displayKey(key);
+    }
+    
 }
 
 function encryptText(){
